@@ -5,3 +5,7 @@ import { App } from "./App";
 const app = document.getElementById("app");
 const root = ReactDOMClient.createRoot(app);
 root.render(<App />);
+
+
+// import GetName from "./context/context";
+// export default {GetName};

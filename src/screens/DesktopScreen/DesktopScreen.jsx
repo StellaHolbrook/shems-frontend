@@ -1,6 +1,40 @@
-import React from "react";
+import React, {useState} from "react";
 import { Link } from "react-router-dom";
 import "./style.css";
+
+function GetName() {
+  const [name, setName] = useState('');
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    alert(`name is: ${name} `);
+  }
+  return(
+      <form  onSubmit={handleSubmit}>
+        <input className="rect_form"
+               type="text"
+               value={name}
+               onChange={(e) => setName(e.target.value)}
+        />
+      </form>
+  )
+}
+
+function GetName() {
+  const [name, setName] = useState('');
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    alert(`name is: ${name} `);
+  }
+  return(
+      <form  onSubmit={handleSubmit}>
+        <input className="rect_form"
+               type="text"
+               value={name}
+               onChange={(e) => setName(e.target.value)}
+        />
+      </form>
+  )
+}
 
 export const DesktopScreen = () => {
   return (

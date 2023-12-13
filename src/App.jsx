@@ -45,5 +45,9 @@ const router = createBrowserRouter([
 
 export const App = () => {
   // here begins by returning the separate router to the desktop screen
-  return <RouterProvider router={router} />;
+  return (
+      <>
+      <RouterProvider router={router} />
+      </>
+  );
 };

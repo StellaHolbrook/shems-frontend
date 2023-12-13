@@ -220,6 +220,18 @@
   width: 520px;
 }
 
+.screen-3 .rect_form {
+  border: 1px solid;
+  border-color: #c3c3c3;
+  border-radius: 8px;
+  height: 60px;
+  width: 520px;
+  font-size: 20px;
+  font-family: "Source Sans Pro", Helvetica;
+  font-weight: 300;
+  color: #7d7d7d;
+}
+
 .screen-3 .text-wrapper-34 {
   color: #7d7d7d;
   font-family: "Source Sans Pro", Helvetica;
