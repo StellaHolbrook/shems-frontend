@@ -20,6 +20,36 @@ function GetName() {
       </form>
   )
 }
+
+const wholeUser = () => {
+  const [joke, setJoke] = useState('');
+  const FetchUser = async () => {
+    try {
+      const response = await fetch('http://localhost:1234/desktop-14', {
+        method: 'PUT',
+        headers: {
+          "/users/register": '',
+        }
+      });
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const data = await response.json();
+      setJoke(data[0].joke);
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  }
+  useEffect(() => {
+    fetchJoke();
+  }, []);
+  return (
+      GetName(),
+            GetAddress()
+  );
+}
+export default Joke;
+
 function GetEmail() {
   const [email, setEmail] = useState('');
   const handleSubmit = (event) => {
