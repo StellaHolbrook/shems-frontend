@@ -1,9 +1,11 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import { Link } from "react-router-dom";
 import "./style.css";
+import {title} from "process";
+
+// this is the signup page for separate users
 
 // these functions are hooks
-
 function GetName() {
   const [name, setName] = useState('');
   const handleSubmit = (event) => {
@@ -21,34 +23,62 @@ function GetName() {
   )
 }
 
-const wholeUser = () => {
-  const [joke, setJoke] = useState('');
-  const FetchUser = async () => {
-    try {
-      const response = await fetch('http://localhost:1234/desktop-14', {
-        method: 'PUT',
-        headers: {
-          "/users/register": '',
-        }
-      });
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      const data = await response.json();
-      setJoke(data[0].joke);
-    } catch (error) {
-      console.error('Error:', error);
-    }
+// const wholeUser = () => {
+//   const [user, setUser] = useState('');
+//   const FetchUser = async () => {
+//     try {
+//       const response = await fetch('http://localhost:1234/desktop-14', {
+//         method: 'POST',
+//         headers: {
+//           "/users/register": '',
+//         }
+//       });
+//       if (!response.ok) {
+//         throw new Error('Network response was not ok');
+//       }
+//       const data = await response.json();
+//       FetchUser(data[0].joke);
+//     } catch (error) {
+//       console.error('Error:', error);
+//     }
+//   }
+//   useEffect(() => {
+//     FetchUser();
+//   }, []);
+//   return (
+//       GetName(), GetAddress()
+//   );
+// }
+  // export default wholeUser();
+
+const signUp = () => {
+  const [name, setName] = useState("");
+  const [addr, setAddr] = useState("");
+  const {users, fetchUsers } = useContext(userContext)
+  const {address, fetchAddress } = useContext(userAddress)
+
+  const handleInput = event  => {
+    setItem(event.target.value)
   }
-  useEffect(() => {
-    fetchJoke();
-  }, []);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json'},
+      body: JSON.stringify({ title: title, body: body })
+    };
+    fetch('http://localhost:1234/api/users/register', requestOptions)
+        .then((response) => response.json())
+        .then((name) => setName(name))
+        .then((addr) =>setAddr(addr))
+        .catch((error) => console.error('Error:', error));
+  };
   return (
-      GetName(),
-            GetAddress()
+      null // i dont' think I have to return anyhting here
   );
-}
-export default Joke;
+};
+
 
 function GetEmail() {
   const [email, setEmail] = useState('');

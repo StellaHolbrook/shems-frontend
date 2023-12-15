@@ -1,6 +1,8 @@
 import React from "react";
 import "./style.css";
 
+// this is the landing page where I need to query data from - remove the sample dta here
+
 export const DivWrapper = () => {
   return (
     <div className="div-wrapper">

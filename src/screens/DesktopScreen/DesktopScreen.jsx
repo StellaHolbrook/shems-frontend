@@ -1,6 +1,9 @@
-import React, {useState} from "react";
+import react, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import "./style.css";
+import {title} from "process";
+
+// this is the log in page accessed from the splash page  (desktop-15)
 
 function GetName() {
   const [name, setName] = useState('');
@@ -19,22 +22,46 @@ function GetName() {
   )
 }
 
-function GetName() {
-  const [name, setName] = useState('');
+function GetPassword() {
+  const [pword, setPword] = useState('');
   const handleSubmit = (event) => {
     event.preventDefault();
-    alert(`name is: ${name} `);
+    alert(`password is: ${pword} `);
   }
   return(
-      <form  onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <input className="rect_form"
                type="text"
-               value={name}
+               value={pword}
                onChange={(e) => setName(e.target.value)}
         />
       </form>
   )
 }
+
+const logIn = () => {
+  const [name, setName] = useState(null);
+  const [pword, setPword] = useState(null);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json'},
+      body: JSON.stringify({ title: title, body: body })
+    };
+    fetch('http://localhost:1234/api/users/login', requestOptions)
+        .then((response) => response.json())
+        .then((name) => setName(name))
+        .then(pword =>setPword(pword))
+        .catch((error) => console.error('Error:', error));
+  };
+  return (
+      null // i dont' think I have to return anyhting here
+  );
+};
+
+export default logIn;
 
 export const DesktopScreen = () => {
   return (
@@ -63,9 +90,9 @@ export const DesktopScreen = () => {
             <img className="vector" alt="Vector" src="/img/vector.svg" />
           </Link>
           <div className="rectangle-9" />
-          <div className="rectangle-10" />
+          <div className="rectangle-10" ><GetPassword></GetPassword></div>
           <div className="text-wrapper-6">Password</div>
-          <div className="rectangle-11" />
+          <div className="rectangle-11" ><GetName></GetName></div>
           <div className="text-wrapper-7">Full Name</div>
           <div className="log-in">LOG IN</div>
           <div className="text-wrapper-8">SHEMS</div>

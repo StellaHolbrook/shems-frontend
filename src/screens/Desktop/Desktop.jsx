@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./style.css";
 
+// this is the home splash page
+
 export const Desktop = () => {
   return (
     <div className="desktop">

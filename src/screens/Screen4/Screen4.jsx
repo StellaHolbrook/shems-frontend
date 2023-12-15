@@ -1,6 +1,9 @@
 import React from "react";
 import "./style.css";
 
+// this is desktop-1, or, the "home page"
+
+
 export const Screen4 = () => {
   return (
     <div className="screen-4">
