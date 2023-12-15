@@ -2,6 +2,7 @@ from datetime import date, datetime
 from fastapi import FastAPI
 from pydantic import BaseModel
 import psycopg2
+from typing import *
 
 app = FastAPI()
 conn = psycopg2.connect("dbname=proj2 user=weizi")
