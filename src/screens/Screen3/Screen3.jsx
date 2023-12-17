@@ -74,8 +74,23 @@ const signUp = () => {
         .then((addr) =>setAddr(addr))
         .catch((error) => console.error('Error:', error));
   };
-  return (
-      null // i dont' think I have to return anyhting here
+  return (                     // not ethis is wrapped in one div.
+      <div>
+      <form onSubmit={handleSubmit}>
+        <input className="rect_form"
+               type="text"
+               value={email}
+               onChange={(e) => setName(e.target.value)}
+        />
+      </form>
+  <form onSubmit={handleSubmit}>
+    <input className="rect_form"
+           type="text"
+           value={address}
+           onChange={(e) => setName(e.target.value)}
+    />
+  </form>
+      </div>
   );
 };
 
