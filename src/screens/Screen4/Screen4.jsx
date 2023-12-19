@@ -9,13 +9,13 @@ export const Screen4 = () => {
           <div className="overlap-5">
             <div className="overlap-6">
               <img className="rectangle-32" alt="Rectangle" src="/img/rectangle-299.svg" />
-              <div className="text-wrapper-41">poop</div>
-              <div className="text-wrapper-42">USER ID : 06PPD125</div>
+              <div className="text-wrapper-41">User</div>
+              <div className="text-wrapper-42">USER ID : </div>
               <div className="overlap-7">
                 <img className="group-7" alt="Group" src="/img/group.png" />
                 <img className="path" alt="Path" src="/img/path-268.svg" />
                 <div className="text-wrapper-43">Service Locations</div>
-                <div className="text-wrapper-44">06</div>
+                <div className="text-wrapper-44"></div>
                 <img className="article-black" alt="Article black" src="/img/article-black-24dp.png" />
                 <div className="group-8">
                   <div className="group-wrapper">
@@ -31,7 +31,7 @@ export const Screen4 = () => {
                 <img className="path" alt="Path" src="/img/path-269.svg" />
                 <div className="overlap-9">
                   <div className="text-wrapper-46">Devices Registered</div>
-                  <div className="text-wrapper-47">24</div>
+                  <div className="text-wrapper-47"></div>
                 </div>
                 <img className="visibility-black-2" alt="Visibility black" src="/img/visibility-black-24dp-2.png" />
               </div>
@@ -39,7 +39,7 @@ export const Screen4 = () => {
                 <img className="group-7" alt="Group" src="/img/group-1.png" />
                 <img className="path-2" alt="Path" src="/img/path-270.svg" />
                 <div className="text-wrapper-43">Current Monthly Bill</div>
-                <div className="text-wrapper-44">$48.53</div>
+                <div className="text-wrapper-44"></div>
                 <div className="group-10">
                   <div className="overlap-group-5">
                     <div className="text-wrapper-48">Add Property</div>
@@ -57,20 +57,20 @@ export const Screen4 = () => {
                 <div className="text-wrapper-54">Area</div>
               </div>
               <div className="overlap-12">
-                <div className="text-wrapper-55">PPD1125</div>
-                <div className="text-wrapper-56">52525</div>
-                <div className="text-wrapper-57">1200</div>
-                <div className="text-wrapper-58">Plot</div>
-                <div className="text-wrapper-59">02</div>
+                <div className="text-wrapper-55"></div>
+                <div className="text-wrapper-56"></div>
+                <div className="text-wrapper-57"></div>
+                <div className="text-wrapper-58"></div>
+                <div className="text-wrapper-59"></div>
                 <img className="group-11" alt="Group" src="/img/group-64.png" />
                 <img className="edit-black" alt="Edit black" src="/img/edit-black-24dp.png" />
               </div>
               <div className="overlap-13">
-                <div className="text-wrapper-60">PPD1202</div>
-                <div className="element"> 52525</div>
-                <div className="text-wrapper-61">2500</div>
-                <div className="text-wrapper-62">House</div>
-                <div className="text-wrapper-63">02</div>
+                <div className="text-wrapper-60"></div>
+                <div className="element"></div>
+                <div className="text-wrapper-61"></div>
+                <div className="text-wrapper-62"></div>
+                <div className="text-wrapper-63"></div>
                 <img className="group-12" alt="Group" src="/img/group-159.png" />
                 <img className="edit-black-dp" alt="Edit black" src="/img/edit-black-24dp.png" />
               </div>
@@ -78,32 +78,32 @@ export const Screen4 = () => {
                 <img className="rectangle-33" alt="Rectangle" src="/img/rectangle-246.svg" />
                 <img className="rectangle-34" alt="Rectangle" src="/img/rectangle-246.svg" />
                 <img className="rectangle-35" alt="Rectangle" src="/img/rectangle-246.svg" />
-                <div className="text-wrapper-64">PPD1323</div>
-                <div className="element-2"> 52525</div>
-                <div className="text-wrapper-65">1250</div>
-                <div className="text-wrapper-66">House</div>
-                <div className="text-wrapper-67">02</div>
+                <div className="text-wrapper-64"></div>
+                <div className="element-2"></div>
+                <div className="text-wrapper-65"></div>
+                <div className="text-wrapper-66"></div>
+                <div className="text-wrapper-67"></div>
                 <img className="group-13" alt="Group" src="/img/group-159.png" />
-                <div className="text-wrapper-55">PPD1278</div>
-                <div className="text-wrapper-56">52525</div>
-                <div className="text-wrapper-57">800</div>
-                <div className="text-wrapper-58">House</div>
-                <div className="text-wrapper-59">03</div>
+                <div className="text-wrapper-55"></div>
+                <div className="text-wrapper-56"></div>
+                <div className="text-wrapper-57"></div>
+                <div className="text-wrapper-58"></div>
+                <div className="text-wrapper-59"></div>
                 <img className="group-11" alt="Group" src="/img/group-159.png" />
-                <div className="text-wrapper-68">PPD1311</div>
-                <div className="text-wrapper-69">52525</div>
-                <div className="text-wrapper-70">2000</div>
-                <div className="text-wrapper-71">Flat</div>
-                <div className="text-wrapper-72">10</div>
+                <div className="text-wrapper-68"></div>
+                <div className="text-wrapper-69"></div>
+                <div className="text-wrapper-70"></div>
+                <div className="text-wrapper-71"></div>
+                <div className="text-wrapper-72"></div>
                 <img className="group-14" alt="Group" src="/img/group-159.png" />
                 <img className="edit-black-2" alt="Edit black" src="/img/edit-black-24dp-3.png" />
               </div>
               <div className="overlap-15">
-                <div className="text-wrapper-55">PPD1235</div>
-                <div className="text-wrapper-56">52525</div>
-                <div className="text-wrapper-57">1800</div>
-                <div className="text-wrapper-58">House</div>
-                <div className="text-wrapper-59">05</div>
+                <div className="text-wrapper-55"></div>
+                <div className="text-wrapper-56"></div>
+                <div className="text-wrapper-57"></div>
+                <div className="text-wrapper-58"></div>
+                <div className="text-wrapper-59"></div>
                 <img className="group-11" alt="Group" src="/img/group-159.png" />
                 <img className="edit-black-dp" alt="Edit black" src="/img/edit-black-24dp-2.png" />
               </div>
