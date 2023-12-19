@@ -14,14 +14,14 @@ export class Screen3 extends Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  // requestOptions = {
-  //   method: 'POST',
-  //   headers: { 'Content-Type': 'application/json' },
-  //   body: JSON.stringify({ postName: 'React updates ' })
-  // };
+  requestOptions = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ postName: 'React updates ' })
+  };
 
   handleSubmit(event) {
-    //const {email, name, address, password} = this.state
+    const {email, name, address, password} = this.state
     event.preventDefault()
     // alert(`
     //   ____Your Details____\n
@@ -30,10 +30,11 @@ export class Screen3 extends Component {
     //   Address : ${address}
     //   Password :${password}
     // `);
-    fetch(this.props.formAction,{body: JSON.stringify({email: this.state.email,
-      address: this.state.address, name: this.state.name, password: this.state.password})
-    })
-    this.setState({}); // if the time allows for it, reset state.
+    // fetch(this.props.formAction, JSON({email: this.state.email,
+    //   address: this.state.address, name: this.state.name, password: this.state.password})
+    // )
+    fetch(this.props.formAction, JSON({}))
+    this.setState({name: this.state.name, address: this.state.address}); // if the time allows for it, reset state.
   }
 
   handleChange(event) {           // this should be all that is required to handle changes
@@ -89,8 +90,9 @@ export class Screen3 extends Component {
                     <div className="text-wrapper-38">Password</div>
                     <div className="text-wrapper-39">Sign Up</div>
                     <Link className="rectangle-31" to="/desktop-1" />
-                    <button className="text-wrapper-40">Sign Up</button>
-                    <div className="text-wrapper-40">Sign Up</div>
+
+                    <button className="text-wrapper-40" type={"submit"}>Sign Up</button>
+                    <button type="submit">Submit</button>
                   </form>
                 </div>
               </div>
