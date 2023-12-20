@@ -1,32 +1,19 @@
-import warnings
 from datetime import date, datetime
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException, Depends
+from sqlalchemy.orm import Session
+from sqlalchemy import text
 from pydantic import BaseModel
-import psycopg2
-import random
-from enum import Enum
+from typing import Annotated
+from database import SessionLocal, engine
+import models
+import crud
 from fastapi.middleware.cors import CORSMiddleware
+import psycopg2   # maybe delete this
+import random
 import traceback
 from fastapi.testclient import TestClient
 
-from psycopg2 import  Error
-
 app = FastAPI()
-try:
-    # Connect to an existing database - stella
-    conn = psycopg2.connect(host="localhost",
-                            dbname="postgres",
-                            user="postgres",
-                            password="cat",
-                            port="5432")
-                            #cursor_factory=RealDictCursor)
-except Exception:
-    print(traceback.format_exc())
-# except:   # connect - vivi
-#     conn = psycopg2.connect("dbname=proj2 user=weizi")
-# finally:
-#     warnings.warn_explicit("Can't connect to database")
-cur = conn.cursor()
 
 origins = [
     "http://localhost:3000",
@@ -35,45 +22,56 @@ origins = [
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"]
+    allow_origins = origins,
 )
 
-class User(BaseModel):
+class CustomerBase(BaseModel):
+    cid: int
     name: str
     billing_addr: str
 
-class Location(BaseModel):
+class EnergyPriceBase(BaseModel):
+    zip_code: str
+    datetime: datetime
+    price: float
+
+class ServiceLocationBase(BaseModel):
+    lid: int
     cid: int
     address: str
-    unit_no: str
+    unit_no: int | None
     zip_code: str
     start_date: datetime
-    size_eds: int
-    num_osqft: int
-    num_bccupants: int
+    size_sqft: int
+    num_beds: int
+    num_occupants: int
 
-class Device(BaseModel):
+class EnrollDeviceBase(BaseModel):
     lid: int
-    time_added: datetime
+    timeadded: datetime
     type: str
     model: str
 
-class deviceEvents(Enum):
-    DOOROPEN = "door open"
-    LIGHTON = "light on"
-    DOORCLOSED = "door closed"
-    LIGHTOFF = "light off"
-    TEMPINCREASE = "temperature increased"
-    TEMPDECREASE = "temperature decreased"
-class DeviceEvent(BaseModel):
-    eid: int
+class DeviceEventBase(BaseModel):
     did: int
-    time_stamp:  datetime
-    event_label: deviceEvents
-    value: float  # electrcity consumption
+    timestamp: datetime
+    event_label: str
+    value: int
+
+def get_db():
+    db = SessionLocal()
+    try:
+            yield db
+    finally:
+        db.close()
+
+db_dependency = Annotated[Session, Depends(get_db)]   # dependency injection
+
+models.Base.metadata.create_all(bind=engine)
+
+@app.put("/customers/register")
+def registerCustomer(customer: models.Customer, db: db_dependency):
+    return None
 
 class Counter():
     def __init__(self):
@@ -90,36 +88,54 @@ keys = random.sample(range(1000, 9999), 4096) #return 4^6 unique primary keys
 def getPrimaryKey():
     Counter.increment()
     return keys[Counter.get_value()-1]
+def run_query(query):
+    with engine.connect() as connection:
+        result = connection.execute(text(query))
+        return result
+
 
 #query runner
-def run_query(query):
-    cur.execute(query)
-    conn.commit()
-    records = cur.fetchall()
-    return records
+# def run_query(query):
+#     cur.execute(query)
+#     conn.commit()
+#     records = cur.fetchall()
+#     return records
 
 # how can i hold user password?
+
+# different approach create_user:
+# @app.post("users/register", response_model=CustomerBase)
+# async def createUser(Customer: CustomerBase, db: db_dependency):
+#     newCustomer = models.Customer(Customer.dict())  # (**Customer.dict())
+#     db.add(newCustomer)
+#     db.commit()
+#     db.refresh()
+#     return.newCustomer
+
+
 # register new user
-@app.put("/users/register")
-def register_user(user: User):
-    q = f"""INSERT INTO Customer (cid, name, billing_addr)
-VALUES (${getPrimaryKey()}, ${user.name}, ${user.billing_addr});"""
-    ret = run_query(q)
-    return {"New customer registered!"}
+# @app.put("/customers/register")
+# def registerCustomer(customer: Customer):
+#     q = f"""INSERT INTO Customer (cid, name, billing_addr)
+# VALUES (${getPrimaryKey()}, ${user.name}, ${user.billing_addr});"""
+#     ret = run_query(q)
+#     return {"New customer registered!"}
+#
+# @app.get("/users/login")  # searches customer name in customer table
+# def loginUser(user: User):
+#     q = f""" SELECT name from Customer where Customer.name LIKE str(USER)+"%" """
+#     ret = run_query(q)
+#     return {"ret": ret}
+#
+# # register new device
+# @app.put("/devices/register")
+# def register_device(device: Device):
+#     q = f"""INSERT INTO Enroll_Device (did, lid, time_added, type, model)
+# VALUES (${device.lid}, ${getPrimaryKey()} ${device.time_added}, ${device.type}, ${device.model});"""
+#     ret = run_query(q)
+#     return {"New device registered!"}
 
-@app.get("/users/login")  # searches customer name in customer table
-def loginUser(user: User):
-    q = f""" SELECT name from Customer where Customer.name LIKE str(USER)+"%" """
-    ret = run_query(q)
-    return {"ret": ret}
 
-# register new device
-@app.put("/devices/register")
-def register_device(device: Device):
-    q = f"""INSERT INTO Enroll_Device (did, lid, time_added, type, model)
-VALUES (${device.lid}, ${getPrimaryKey()} ${device.time_added}, ${device.type}, ${device.model});"""
-    ret = run_query(q)
-    return {"New device registered!"}
 
 # register new location            # this is broken 12-19.
 # @app.put("/locations/register")
